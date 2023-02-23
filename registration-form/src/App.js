@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Login from "./components/Login";
-import Signup from "./components/SignUp";
+import Login from "./components/login";
+import Signup from "./components/signup";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -11,9 +11,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {isLogin?<Login /> : <Signup/>}
+        {isLogin?<Login /> : <Signup />}
         <div style={!isLogin? {} : {display: 'none'}}>
-          Existing user!!
+          Existing user?
           <button className="noborder-button" onClick={toogleScreen}>
             Login
           </button>

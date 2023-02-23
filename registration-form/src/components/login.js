@@ -1,6 +1,7 @@
 import React from 'react';
 import './signup.css';
 import {useState} from 'react';
+import Signup from './signup';
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
@@ -9,7 +10,7 @@ function Login(){
 
     const [email, setEmail] = useState();
     const [password,setPassword] = useState();
-
+    const [isRegistered, setIsRegistered] = useState(false);
     function HandleChange(e){ 
         if(e.target.id==="email"){
             setEmail(e.target.value);
@@ -19,7 +20,9 @@ function Login(){
             setPassword(e.target.value);
         }
     }
-
+    function toogleScreen(){
+        setIsRegistered(true);
+      }
     function HandleSubmit(e){
         e.preventDefault();
     }
@@ -49,6 +52,7 @@ function Login(){
 
                     <button className="submit-button" type="submit" onClick ={HandleErrors}>Sign in</button>
             </form>
+            {isRegistered && <Signup/>}
         </div>
     );
     }
