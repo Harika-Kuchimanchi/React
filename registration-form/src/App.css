@@ -1,0 +1,14 @@
+.App {
+  background-image: url("https://img.freepik.com/free-vector/white-gray-geometric-pattern-background-vector_53876-136510.jpg?w=1380&t=st=1677077468~exp=1677078068~hmac=6764b2057599b30ec2b0ab987df3c72faa5fdb0ad758cab2b2012296a67f1049");
+  background-size:auto;
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
