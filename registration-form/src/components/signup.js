@@ -1,12 +1,12 @@
 import React from 'react';
 import './Registration.css'
 import {useState} from 'react';
-import AlreadyRegistered from './AlreadyRegistred';
+import Login from './login';
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
 
-const RegistrationPage= () =>{
+const Signup= () =>{
 
     const [FullName, setFullName] = useState();
     const [email, setEmail] = useState();
@@ -74,4 +74,4 @@ function HandleErrors(){
     );
 }
 
-export default RegistrationPage;
+export default Signup;

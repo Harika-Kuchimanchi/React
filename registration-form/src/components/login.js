@@ -5,7 +5,7 @@ import {useState} from 'react';
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
 
-function AlreadyRegistered(){
+function Login(){
 
     const [email, setEmail] = useState();
     const [password,setPassword] = useState();
@@ -46,4 +46,4 @@ function HandleErrors(){
         </div>
     );
     }
-    export default AlreadyRegistered;
+    export default Login;
