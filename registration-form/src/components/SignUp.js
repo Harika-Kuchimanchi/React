@@ -1,12 +1,12 @@
 import React from 'react';
-import './Registration.css'
+import './signup.css'
 import {useState} from 'react';
-import AlreadyRegistered from './AlreadyRegistred';
+import Login from './Login';
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
 
-const RegistrationPage= () =>{
+const Signup= () =>{
 
     const [FullName, setFullName] = useState();
     const [email, setEmail] = useState();
@@ -29,10 +29,34 @@ function HandleChange(e){
     }
 
 }
+let obj={
+    id:Math.random(),
+    name:FullName,
+    email:email,
+    password:password,
+    confirmPassword:confirmPassword
+}
 
 function HandleSubmit(e){
     e.preventDefault();
+    
+
 }
+ function HandleAccounts(){
+    for(let i=0;i<localStorage.length;i++){
+        if(FullName!==undefined|| email!==undefined|| password!==undefined|| confirmPassword!==undefined){
+        if((JSON.parse(localStorage.getItem(localStorage.key(i)))["email"]===email) &&(localStorage.length!==0)&&(JSON.parse(localStorage.getItem(localStorage.key(i)))["password"]===password)){
+            alert("account already exists!!");
+        }
+    }
+        if((password===confirmPassword)&&(password!==undefined && confirmPassword!==undefined)){
+            if((JSON.parse(localStorage.getItem(localStorage.key(i)))["email"]!==email)&&(JSON.parse(localStorage.getItem(localStorage.key(i)))["password"]!==password)){
+            localStorage.setItem(obj['id'].toString(),JSON.stringify(obj));
+         }
+        }
+     }
+     localStorage.setItem(obj['id'].toString(),JSON.stringify(obj));
+ }
 function HandleErrors(){
     if(FullName===undefined|| email===undefined|| password===undefined|| confirmPassword===undefined){
         document.getElementById("nameErr").textContent="**Required";
@@ -44,10 +68,12 @@ function HandleErrors(){
     if (password !==confirmPassword && (password.length!==confirmPassword.length)){
         document.getElementById("cnfrmpswdErr").textContent="*Password is incorrect";
     }
-    if(password === confirmPassword && (password!==undefined && confirmPassword!==undefined)){
-        document.getElementById("cnfrmpswdErr").textContent="Looks good";   
+    if((password === confirmPassword) && (password!==undefined && confirmPassword!==undefined)){
+        document.getElementById("cnfrmpswdErr").textContent="Looks good";  
     }
+    HandleAccounts(); 
 }
+
     return(
         <div className="container">
             <h3 className="heading">Step ahead by creating your Account!</h3>
@@ -72,6 +98,6 @@ function HandleErrors(){
             </form>
         </div>
     );
-}
 
-export default RegistrationPage;
+}
+export default Signup;

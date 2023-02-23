@@ -1,34 +1,40 @@
 import React from 'react';
-import './Registration.css';
+import './signup.css';
 import {useState} from 'react';
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
 
-function AlreadyRegistered(){
+function Login(){
 
     const [email, setEmail] = useState();
     const [password,setPassword] = useState();
-function HandleChange(e){ 
-    if(e.target.id==="email"){
-        setEmail(e.target.value);
-    
-    }
-    if(e.target.id==="pswd"){
-        setPassword(e.target.value);
-    }
-}
 
-function HandleSubmit(e){
-    e.preventDefault();
-}
-function HandleErrors(){
-    if(email===undefined|| password===undefined){
-        document.getElementById("emailErr").textContent="**Required";
-        document.getElementById("pswdErr").textContent="**Required";
-        alert("Please fill all the fields!!")
-     }
-}
+    function HandleChange(e){ 
+        if(e.target.id==="email"){
+            setEmail(e.target.value);
+        
+        }
+        if(e.target.id==="pswd"){
+            setPassword(e.target.value);
+        }
+    }
+
+    function HandleSubmit(e){
+        e.preventDefault();
+    }
+    function HandleErrors(){
+        if(email===undefined|| password===undefined){
+            document.getElementById("emailErr").textContent="**Required";
+            document.getElementById("pswdErr").textContent="**Required";
+            alert("Please fill all the fields!!")
+        }
+        for(let i=0;i<localStorage.length;i++){
+        if((JSON.parse(localStorage.getItem(localStorage.key(i)))["email"]===email)&&(JSON.parse(localStorage.getItem(localStorage.key(i)))["password"]===password)){
+            alert("login successful!!");
+        }
+    }
+    }
     return(
         <div className="container">
             <form className="form-container" onSubmit={HandleSubmit}>
@@ -46,4 +52,4 @@ function HandleErrors(){
         </div>
     );
     }
-    export default AlreadyRegistered;
+    export default Login;
