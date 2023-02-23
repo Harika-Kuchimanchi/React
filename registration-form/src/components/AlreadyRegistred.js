@@ -6,12 +6,13 @@ import {useState} from 'react';
 
 
 function AlreadyRegistered(){
-    
+
     const [email, setEmail] = useState();
     const [password,setPassword] = useState();
 function HandleChange(e){ 
     if(e.target.id==="email"){
         setEmail(e.target.value);
+    
     }
     if(e.target.id==="pswd"){
         setPassword(e.target.value);
