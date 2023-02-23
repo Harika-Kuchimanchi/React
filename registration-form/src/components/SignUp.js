@@ -1,7 +1,7 @@
 import React from 'react';
 import './signup.css'
 import {useState} from 'react';
-import Login from './Login';
+import Login from './login';
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
@@ -12,8 +12,11 @@ const Signup= () =>{
     const [email, setEmail] = useState();
     const [password,setPassword] = useState();
     const [confirmPassword,setConfirmPassword] = useState();
+    const [isLogin, setIsLogin] = useState(false);
 
- 
+    function toogleScreen() {
+        setIsLogin(true);
+      }
 function HandleChange(e){
     if(e.target.id==="name"){
         setFullName(e.target.value);
@@ -92,10 +95,11 @@ function HandleErrors(){
 
                     <label htmlFor="cnfrmpswd" className="label">Confirm Password :</label>
                     <input type="password" id="cnfrmpswd" className="input" value={confirmPassword} onChange={HandleChange}/>
-                    <p className="req incorrect" id="cnfrmpswdErr"></p>
+                    <p className="req" id="cnfrmpswdErr"></p>
 
                     <button className="submit-button" type="submit" onClick ={HandleErrors}>Register</button>
             </form>
+            {isLogin && <Login />}
         </div>
     );
 

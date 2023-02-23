@@ -20,24 +20,35 @@ function Login(){
             setPassword(e.target.value);
         }
     }
-    function toogleScreen(){
-        setIsRegistered(true);
-      }
+
+   
     function HandleSubmit(e){
         e.preventDefault();
     }
     function HandleErrors(){
+        
         if(email===undefined|| password===undefined){
             document.getElementById("emailErr").textContent="**Required";
             document.getElementById("pswdErr").textContent="**Required";
             alert("Please fill all the fields!!")
         }
         for(let i=0;i<localStorage.length;i++){
-        if((JSON.parse(localStorage.getItem(localStorage.key(i)))["email"]===email)&&(JSON.parse(localStorage.getItem(localStorage.key(i)))["password"]===password)){
-            alert("login successful!!");
+
+            if(email!==undefined|| password!==undefined){
+                if((JSON.parse(localStorage.getItem(localStorage.key(i)))["email"]===email)&&(JSON.parse(localStorage.getItem(localStorage.key(i)))["password"]===password)){
+                    alert("login successful!!");
+                }
+                else{
+                    alert("Pls check if the details are correct!")
+                }
+            }
+       
         }
+   
     }
-    }
+    function toogleScreen(){
+        setIsRegistered(true);
+      }
     return(
         <div className="container">
             <form className="form-container" onSubmit={HandleSubmit}>
