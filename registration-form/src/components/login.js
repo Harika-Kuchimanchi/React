@@ -1,5 +1,5 @@
 import React from 'react';
-import './Registration.css';
+import './signup.css';
 import {useState} from 'react';
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
