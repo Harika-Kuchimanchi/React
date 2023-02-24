@@ -45,52 +45,11 @@ const Signup = () => {
       }
     }
   }
-  let obj = {
-    id: Math.random(),
-    name: FullName,
-    email: email,
-    password: password,
-    confirmPassword: confirmPassword,
-  };
 
   function HandleSubmit(e) {
     e.preventDefault();
   }
-  function HandleAccounts() {
-    for (let i = 0; i < localStorage.length; i++) {
-      if (
-        FullName !== "" ||
-        email !== "" ||
-        password !== "" ||
-        confirmPassword !== ""
-      ) {
-        if (
-          JSON.parse(localStorage.getItem(localStorage.key(i)))["email"] ===
-            email &&
-          localStorage.length !== 0 &&
-          JSON.parse(localStorage.getItem(localStorage.key(i)))["password"] ===
-            password
-        ) {
-          alert("account already exists!!");
-        }
-      }
-      if (
-        password === confirmPassword &&
-        password !== "" &&
-        confirmPassword !== ""
-      ) {
-        if (
-          JSON.parse(localStorage.getItem(localStorage.key(i)))["email"] !==
-            email &&
-          JSON.parse(localStorage.getItem(localStorage.key(i)))["password"] !==
-            password
-        ) {
-          localStorage.setItem(obj["id"].toString(), JSON.stringify(obj));
-        }
-      }
-    }
-    localStorage.setItem(obj["id"].toString(), JSON.stringify(obj));
-  }
+
   function HandleErrors() {
     if (
       FullName === "" ||
@@ -118,7 +77,6 @@ const Signup = () => {
     ) {
       document.getElementById("cnfrmpswdErr").textContent = "Looks good";
     }
-    // HandleAccounts();
     if (
       FullName !== "" &&
       email !== "" &&
@@ -132,7 +90,7 @@ const Signup = () => {
   function signUp() {
     let signUpData = {
       name: FullName,
-      emailId: email,
+      email: email,
       password: password,
     };
     let localData = [];
@@ -143,23 +101,24 @@ const Signup = () => {
     } else {
       let exists = 0;
       for (let i = 0; i < localData.length; i++) {
-        if (localData[i]["emailId"] === email) {
+        if ((localData[i]["email"] === email)){
           alert("User already exists, please login");
           exists = 1;
         }
-      }
+      } 
       if (exists === 1) {
        window.location.href = '/login';
       } else {
         localData.push(signUpData);
         localStorage.setItem("signUp", JSON.stringify(localData));
+        alert("Registered Succesfully");
       }
     }
   }
 
   return (
     <div className="container">
-      <h3 className="heading">Step ahead by creating your Account!</h3>
+      <h1 className="heading">Step ahead by creating your Account!</h1>
       <form className="form-container" onSubmit={HandleSubmit}>
         <label htmlFor="name" className="label">
           Full name :
@@ -210,11 +169,11 @@ const Signup = () => {
         <p className="req" id="cnfrmpswdErr"></p>
 
         <button className="submit-button" type="submit" onClick={HandleErrors}>
-          Register
+          Sign Up
         </button>
-        <div>
+        <div className="footer">
             Already have an account?<Link to="/login">
-                <button className="noborder-button">Login</button>
+            <button className="noborder-button">Login</button>
             </Link>
         </div>
       </form>

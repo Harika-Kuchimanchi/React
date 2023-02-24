@@ -1,7 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./signup.css";
-import { useState } from "react";
+import {Link } from "react-router-dom";
+import "./login.css";
+import React,{ useState } from "react";
 // import {database} from '../Firebase'
 // import {ref,push,child,update, getDatabase} from "firebase/database";
 
@@ -11,38 +10,65 @@ function Login() {
   function HandleChange(e) {
     if (e.target.id === "email") {
       setEmail(e.target.value);
+      if(e.target.value!==""){
+        document.getElementById("emailErr").textContent = "";
+      }
+      else{
+        document.getElementById("emailErr").textContent = "**Required";
+      }
     }
     if (e.target.id === "pswd") {
       setPassword(e.target.value);
+      if(e.target.value!==""){
+        document.getElementById("pswdErr").textContent = "";
+      }
+      else{
+        document.getElementById("pswdErr").textContent = "**Required";
+      }
     }
   }
 
   function HandleSubmit(e) {
     e.preventDefault();
   }
+  let LoginData={
+    email:email,
+    password:password
+  }
   function HandleErrors() {
-    if (email === undefined || password === undefined) {
+    if (email === "" || password === "") {
       document.getElementById("emailErr").textContent = "**Required";
       document.getElementById("pswdErr").textContent = "**Required";
       alert("Please fill all the fields!!");
     }
-    for (let i = 0; i < localStorage.length; i++) {
-      if (email !== undefined || password !== undefined) {
+      else{
+        let loggedin=0;
+        let SignedUpData = JSON.parse(localStorage.getItem("signUp"));
+        for(let i=0;i<SignedUpData.length;i++){
         if (
-          JSON.parse(localStorage.getItem(localStorage.key(i)))["email"] ===
-            email &&
-          JSON.parse(localStorage.getItem(localStorage.key(i)))["password"] ===
-            password
+          (SignedUpData[i]["email"] ===
+            email) &&
+          (SignedUpData[i]["password"] ===
+            password)
         ) {
-          alert("login successful!!");
-        } else {
-          alert("Pls check if the details are correct!");
-        }
+          loggedin=1;
       }
+    }
+    if(loggedin===1){
+      alert("login successful!!");
+      localStorage.setItem("login",JSON.stringify(LoginData));
+      window.location.href='/viewPage';
+    }
+    else{
+    
+      alert("Pls check if the details are correct!");
+    }
+   
     }
   }
   return (
     <div className="container">
+      <h1 class="heading">Please login to peep in!!</h1>
       <form className="form-container" onSubmit={HandleSubmit}>
         <label htmlFor="email" className="label">
           Email id :
@@ -69,12 +95,12 @@ function Login() {
         <p className="req" id="pswdErr"></p>
 
         <button className="submit-button" type="submit" onClick={HandleErrors}>
-          Sign in
+          Log in
         </button>
-        <div>
+        <div class="footer">
           New user?
           <Link to="/signup">
-            <button className="noborder-button"> Register</button>
+            <button className="noborder-button">Sign Up</button>
           </Link>
         </div>
       </form>
