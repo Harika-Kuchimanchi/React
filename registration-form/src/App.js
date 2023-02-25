@@ -1,5 +1,6 @@
-import { BrowserRouter,Switch,Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import "./components/common.css";
 import Login from "./components/login";
 import Signup from "./components/SignUp";
 import ViewPage from "./components/ViewPage";
@@ -8,12 +9,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <BrowserRouter>
-        <Switch>
-          <Route exact path="/" element={<Signup/>}/>
-          <Route exact path="signup" element={<Signup/>}/>
-          <Route exact path="login" element={<Login/>}/>
-          <Route exact path="viewPage" element={<ViewPage/>}/>
-        </Switch>
+          <Routes>
+            <Route path="/" element={<Signup />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/viewPage" element={<ViewPage />} />
+          </Routes>
         </BrowserRouter>
       </header>
     </div>

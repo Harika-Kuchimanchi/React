@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.heading {
+    color: rgb(30, 113, 105);
+    margin: 15px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    background-color: gainsboro;
+    border-radius: 6px;
+    padding: 24px;
+}
+
+.label {
+    text-align: left;
+    font-size: 18px;
+    color: rgb(30, 113, 105);
+    margin-top: 16px;
+}
+
+.label:first-child{
+    margin-top: 0;
+}
+
+.input {
+    width: 350px;
+    background-color: lightgoldenrodyellow;
+    border-width: 0;
+    padding: 8px;
+    border-radius: 6px;
+    height: 36px;
+}
+
+.req {
+    color: red;
+    font-size: 10px;
+}
+
+.submit-button {
+    background-color: beige;
+    border-width: 0;
+    width: 150px;
+    padding: 10px;
+    border-radius: 6px;
+    align-self: center;
+    margin-top: 24px;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}

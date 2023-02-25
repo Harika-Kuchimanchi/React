@@ -4,6 +4,8 @@ const ViewPage=()=>{
 
     function HandleLogout(){
         localStorage.removeItem("login");
+        alert("Logout was Successfull");
+        window.location.href="/login";
     }
     return(
     <>
@@ -12,9 +14,9 @@ const ViewPage=()=>{
             <img src="https://assets.ccbp.in/frontend/intermediate-rwd/landing-page-logo.png" alt="logo" className="nav-logo" />
         </nav>
         <ul className="items-container display" id="itemsContainer">
-        <a href="#" className="items">Features</a>
-            <a href="#" className="items">About</a>
-            <a href="#" className="items">Contacts</a>
+        <a href="/#" className="items">Features</a>
+            <a href="/#" className="items">About</a>
+            <a href="/#" className="items">Contacts</a>
             <div className="items">
             <Link to="/login"><button className="button" onClick={HandleLogout}>Logout</button></Link>
             </div>

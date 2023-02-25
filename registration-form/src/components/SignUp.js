@@ -98,6 +98,8 @@ const Signup = () => {
     if (localData.length === 0) {
       localData.push(signUpData);
       localStorage.setItem("signUp", JSON.stringify(localData));
+      alert("Registered Succesfully");
+      window.location.href = '/login';
     } else {
       let exists = 0;
       for (let i = 0; i < localData.length; i++) {
@@ -112,6 +114,7 @@ const Signup = () => {
         localData.push(signUpData);
         localStorage.setItem("signUp", JSON.stringify(localData));
         alert("Registered Succesfully");
+        window.location.href = '/login';
       }
     }
   }

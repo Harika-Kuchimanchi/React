@@ -68,7 +68,7 @@ function Login() {
   }
   return (
     <div className="container">
-      <h1 class="heading">Please login to peep in!!</h1>
+      <h1 className="heading">Please login to peep in!!</h1>
       <form className="form-container" onSubmit={HandleSubmit}>
         <label htmlFor="email" className="label">
           Email id :
@@ -97,7 +97,7 @@ function Login() {
         <button className="submit-button" type="submit" onClick={HandleErrors}>
           Log in
         </button>
-        <div class="footer">
+        <div className="footer">
           New user?
           <Link to="/signup">
             <button className="noborder-button">Sign Up</button>
