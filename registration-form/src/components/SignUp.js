@@ -38,8 +38,15 @@ const Signup = () => {
     }
     if (e.target.id === "cnfrmpswd") {
       setConfirmPassword(e.target.value);
+      document.getElementById("cnfrmpswdErr").textContent = "";
+      document.getElementById("cnfrmpswdSuccess").textContent = "";
       if (e.target.value === "") {
         document.getElementById("cnfrmpswdErr").textContent = "**Required";
+      } else if (password !== e.target.value) {
+        document.getElementById("cnfrmpswdErr").textContent =
+          "**Password and confirm password doesn't match";
+      } else if (password === e.target.value) {
+        document.getElementById("cnfrmpswdSuccess").textContent = "**Looks Good";
       } else {
         document.getElementById("cnfrmpswdErr").textContent = "";
       }
@@ -52,9 +59,9 @@ const Signup = () => {
 
   function HandleErrors() {
     if (
-      FullName === "" ||
-      email === "" ||
-      password === "" ||
+      FullName === "" &&
+      email === "" &&
+      password === "" &&
       confirmPassword === ""
     ) {
       document.getElementById("nameErr").textContent = "**Required";
@@ -62,22 +69,25 @@ const Signup = () => {
       document.getElementById("pswdErr").textContent = "**Required";
       document.getElementById("cnfrmpswdErr").textContent = "**Required";
       alert("Please fill all the fields!!");
+    } else {
+      if (FullName === "") {
+        document.getElementById("nameErr").textContent = "**Required";
+      }
+      if (email === "") {
+        document.getElementById("emailErr").textContent = "**Required";
+      }
+      if (password === "") {
+        document.getElementById("pswdErr").textContent = "**Required";
+      }
+      if (confirmPassword === "") {
+        document.getElementById("cnfrmpswdErr").textContent = "**Required";
+      }
     }
-    if (
-      password !== confirmPassword &&
-      password.length !== confirmPassword.length
-    ) {
+
+    if (password !== confirmPassword) {
       document.getElementById("cnfrmpswdErr").textContent =
-        "*Password is incorrect";
-    }
-    if (
-      password === confirmPassword &&
-      password !== "" &&
-      confirmPassword !== ""
-    ) {
-      document.getElementById("cnfrmpswdErr").textContent = "Looks good";
-    }
-    if (
+        "**Password doesn't match";
+    } else if (
       FullName !== "" &&
       email !== "" &&
       password !== "" &&
@@ -99,22 +109,22 @@ const Signup = () => {
       localData.push(signUpData);
       localStorage.setItem("signUp", JSON.stringify(localData));
       alert("Registered Succesfully");
-      window.location.href = '/login';
+      window.location.href = "/login";
     } else {
       let exists = 0;
       for (let i = 0; i < localData.length; i++) {
-        if ((localData[i]["email"] === email)){
+        if (localData[i]["email"] === email) {
           alert("User already exists, please login");
           exists = 1;
         }
-      } 
+      }
       if (exists === 1) {
-       window.location.href = '/login';
+        window.location.href = "/login";
       } else {
         localData.push(signUpData);
         localStorage.setItem("signUp", JSON.stringify(localData));
         alert("Registered Succesfully");
-        window.location.href = '/login';
+        window.location.href = "/login";
       }
     }
   }
@@ -170,14 +180,16 @@ const Signup = () => {
           onChange={HandleChange}
         />
         <p className="req" id="cnfrmpswdErr"></p>
+        <p className="req_success" id="cnfrmpswdSuccess"></p>
 
         <button className="submit-button" type="submit" onClick={HandleErrors}>
           Sign Up
         </button>
         <div className="footer">
-            Already have an account?<Link to="/login">
+          Already have an account?
+          <Link to="/login">
             <button className="noborder-button">Login</button>
-            </Link>
+          </Link>
         </div>
       </form>
     </div>

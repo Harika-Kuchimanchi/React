@@ -33,7 +33,8 @@ function Login() {
   }
   let LoginData={
     email:email,
-    password:password
+    password:password,
+    userName: ''
   }
   function HandleErrors() {
     if (email === "" || password === "") {
@@ -52,6 +53,7 @@ function Login() {
             password)
         ) {
           loggedin=1;
+          LoginData.userName=SignedUpData[i].name;
       }
     }
     if(loggedin===1){

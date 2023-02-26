@@ -1,7 +1,7 @@
 import './ViewPage.css';
 import { Link } from 'react-router-dom';
 const ViewPage=()=>{
-
+    let userName = JSON.parse(localStorage.getItem('login')).userName;
     function HandleLogout(){
         localStorage.removeItem("login");
         alert("Logout was Successfull");
@@ -23,7 +23,8 @@ const ViewPage=()=>{
         </ul>
     </div>
     <div className="bg-container">
-        <h1 className="page-heading">A Student Startup Acceleration Program!</h1>
+        <h1 className="page-heading">Welcome {userName}</h1>
+        <h1 className="page-sub-heading">To Student Startup Acceleration Program!</h1>
     </div>
     </>
     );
